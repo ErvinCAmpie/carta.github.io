@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" >
 <head>
-  <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My </title>
   
   <meta name="google-adsense-account" content="ca-pub-4704501585981299">
@@ -79,7 +79,13 @@ body  {
 	cursor: pointer;
 }
 
-@media (min-width: 720px) {
+@media (min-width: 420px) {
+
+  .envelope-inner {
+    transform-style: flat;
+  }
+
+
 	.envelope {
 		--envelope-width: 600px;
 		--envelope-height: 350px;
@@ -107,6 +113,16 @@ body  {
 }
 
 .envelope:hover {
+	--envelope-transform: var(--envelope-transform-hover, 0deg);
+	--evelope-rotate-delay: var(--evelope-rotate-delay-hover);
+	--shadow-transform: rotateY(180deg);
+	--fold-rotate: var(--fold-rotate-hover);
+	--fold-delay: var(--fold-delay-hover);
+	--fold-zindex: var(--fold-zindex-hover);
+	--letter-height: var(--letter-height-hover);
+	--letter-delay: var(--letter-delay-hover);
+}
+.envelope:active {
 	--envelope-transform: var(--envelope-transform-hover, 0deg);
 	--evelope-rotate-delay: var(--evelope-rotate-delay-hover);
 	--shadow-transform: rotateY(180deg);
@@ -300,18 +316,18 @@ body  {
 	document.addEventListener('contextmenu', function (e) {
     e.preventDefault();
   });
-  
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'F12') {
-      e.preventDefault();
-    }
-    if (e.ctrlKey && e.shiftKey && e.key === 'I') {
-      e.preventDefault();
-    }
-    if (e.ctrlKey && e.key === 'u') {
-      e.preventDefault();
-    }
+
+  const envelope = document.querySelector('.envelope');
+
+  envelope.addEventListener('touchstart', function() {
+    envelope.classList.add('active');
   });
+
+  envelope.addEventListener('touchend', function() {
+    envelope.classList.remove('active');
+  });
+
+
 </script>
 
   
